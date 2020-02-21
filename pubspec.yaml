@@ -20,6 +20,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  camera: ^0.5.7+4
+
   firebase_core: ^0.2.5
   firebase_analytics: ^1.0.4
   firebase_ml_vision: ^0.9.3
