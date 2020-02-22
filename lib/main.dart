@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: const <Widget>[
+          children: <Widget>[
             DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
@@ -78,8 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text('Profile'),
             ),
             ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
+              leading: Icon(Icons.close),
+              title: Text('Colse Drawer'),
+              onTap: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
