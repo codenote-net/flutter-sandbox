@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/widgets/components/drawer.dart';
 import 'package:path/path.dart' show join;
@@ -89,11 +90,21 @@ class TakePictureScreenState extends State<TakePictureScreen> {
             // Attempt to take a picture and log where it's been saved.
             await _controller.takePicture(path);
 
+            // Recognize text from image using Cloud Vision API
+            final File imageFile = File(path);
+            final FirebaseVisionImage visionImage =
+                FirebaseVisionImage.fromFile(imageFile);
+            final TextRecognizer textRecognizer =
+                FirebaseVision.instance.cloudTextRecognizer();
+            final VisionText visionText =
+                await textRecognizer.processImage(visionImage);
+
             // If the picture was taken, display it on a new screen.
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DisplayPictureScreen(imagePath: path),
+                builder: (context) => DisplayPictureScreen(
+                    imagePath: path, recognizedText: visionText.text),
               ),
             );
           } catch (e) {
@@ -109,8 +120,10 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 // A widget that displays the picture taken by the user.
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
+  final String recognizedText;
 
-  const DisplayPictureScreen({Key key, this.imagePath}) : super(key: key);
+  const DisplayPictureScreen({Key key, this.imagePath, this.recognizedText})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +131,16 @@ class DisplayPictureScreen extends StatelessWidget {
       appBar: AppBar(title: Text('Display the Picture')),
       // The image is stored as a file on the device. Use the `Image.file`
       // constructor with the given path to display the image.
-      body: Image.file(File(imagePath)),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Image.file(File(imagePath)),
+              Text(recognizedText),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
