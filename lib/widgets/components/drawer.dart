@@ -21,7 +21,7 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-              leading: Icon(Icons.message),
+              leading: Icon(Icons.home),
               title: Text('Home'),
               onTap: () {
                 Navigator.of(context).pushReplacementNamed(Routes.home);
