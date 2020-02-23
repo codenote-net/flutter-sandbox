@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/routes/index.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -20,17 +21,23 @@ class AppDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.message),
-            title: Text('Home'),
-          ),
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed(Routes.home);
+              }),
           ListTile(
-            leading: Icon(Icons.message),
-            title: Text('Messages'),
-          ),
+              leading: Icon(Icons.message),
+              title: Text('Messages'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed(Routes.messages);
+              }),
           ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text('Profile'),
-          ),
+              leading: Icon(Icons.account_circle),
+              title: Text('Profile'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed(Routes.profile);
+              }),
           ListTile(
             leading: Icon(Icons.close),
             title: Text('Colse Drawer'),

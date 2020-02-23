@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/routes/index.dart';
 import 'package:flutter_sandbox/widgets/components/drawer.dart';
+import 'package:flutter_sandbox/widgets/screens/messages.dart';
+import 'package:flutter_sandbox/widgets/screens/profile.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,6 +15,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Home Page'),
+      routes: <String, WidgetBuilder> {
+        Routes.home: (BuildContext context) => MyHomePage(title: 'Home Page'),
+        Routes.messages: (BuildContext context) =>  MessagesScreen(),
+        Routes.profile: (BuildContext context) =>  ProfileScreen(),
+      },
     );
   }
 }
