@@ -1,27 +1,41 @@
+import 'dart:async';
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/routes/index.dart';
 import 'package:flutter_sandbox/widgets/components/drawer.dart';
+import 'package:flutter_sandbox/widgets/screens/camera.dart';
 import 'package:flutter_sandbox/widgets/screens/messages.dart';
 import 'package:flutter_sandbox/widgets/screens/profile.dart';
 
-void main() => runApp(MyApp());
+Future<void> main() async {
+  // Ensure that plugin services are initialized so that `availableCameras()`
+  // can be called before `runApp()`
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  // Obtain a list of the available cameras on the device.
+  final cameras = await availableCameras();
+
+  // Get a specific camera from the list of available cameras.
+  final firstCamera = cameras.first;
+
+  runApp(
+    MaterialApp(
       title: 'Flutter Sandbox',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Home Page'),
-      routes: <String, WidgetBuilder> {
+      routes: <String, WidgetBuilder>{
         Routes.home: (BuildContext context) => MyHomePage(title: 'Home Page'),
-        Routes.messages: (BuildContext context) =>  MessagesScreen(),
-        Routes.profile: (BuildContext context) =>  ProfileScreen(),
+        Routes.camera: (BuildContext context) => TakePictureScreen(
+              // Pass the appropriate camera to the TakePictureScreen widget.
+              camera: firstCamera,
+            ),
+        Routes.messages: (BuildContext context) => MessagesScreen(),
+        Routes.profile: (BuildContext context) => ProfileScreen(),
       },
-    );
-  }
+    ),
+  );
 }
 
 class MyHomePage extends StatefulWidget {
