@@ -3,6 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/routes/index.dart';
 import 'package:flutter_sandbox/widgets/components/drawer.dart';
+import 'package:flutter_sandbox/widgets/screens/assets.dart';
 import 'package:flutter_sandbox/widgets/screens/camera.dart';
 import 'package:flutter_sandbox/widgets/screens/messages.dart';
 import 'package:flutter_sandbox/widgets/screens/profile.dart';
@@ -27,6 +28,7 @@ Future<void> main() async {
       home: MyHomePage(title: 'Home Page'),
       routes: <String, WidgetBuilder>{
         Routes.home: (BuildContext context) => MyHomePage(title: 'Home Page'),
+        Routes.assets: (BuildContext context) => AssetsScreen(),
         Routes.camera: (BuildContext context) => TakePictureScreen(
               // Pass the appropriate camera to the TakePictureScreen widget.
               camera: firstCamera,
