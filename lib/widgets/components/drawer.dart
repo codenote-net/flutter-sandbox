@@ -39,6 +39,12 @@ class AppDrawer extends StatelessWidget {
                 Navigator.of(context).pushReplacementNamed(Routes.camera);
               }),
           ListTile(
+              leading: Icon(Icons.photo),
+              title: Text('Gallery'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed(Routes.gallery);
+              }),
+          ListTile(
               leading: Icon(Icons.message),
               title: Text('Messages'),
               onTap: () {
