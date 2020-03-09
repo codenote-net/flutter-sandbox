@@ -5,6 +5,7 @@ class Routes {
   static const String home = '/home';
   static const String assets = '/assets';
   static const String camera = '/camera';
+  static const String cameraApp = '/camera_app';
   static const String gallery = '/gallery';
   static const String messages = MessagesScreen.routeName;
   static const String profile = ProfileScreen.routeName;
