@@ -5,6 +5,7 @@ import 'package:flutter_sandbox/routes/index.dart';
 import 'package:flutter_sandbox/widgets/components/drawer.dart';
 import 'package:flutter_sandbox/widgets/screens/assets.dart';
 import 'package:flutter_sandbox/widgets/screens/camera.dart';
+import 'package:flutter_sandbox/widgets/screens/camera_app.dart';
 import 'package:flutter_sandbox/widgets/screens/gallery.dart';
 import 'package:flutter_sandbox/widgets/screens/messages.dart';
 import 'package:flutter_sandbox/widgets/screens/profile.dart';
@@ -34,6 +35,7 @@ Future<void> main() async {
               // Pass the appropriate camera to the TakePictureScreen widget.
               camera: firstCamera,
             ),
+        Routes.cameraApp: (BuildContext context) => CameraAppScreen(),
         Routes.gallery: (BuildContext context) => GalleryScreen(),
         Routes.messages: (BuildContext context) => MessagesScreen(),
         Routes.profile: (BuildContext context) => ProfileScreen(),
